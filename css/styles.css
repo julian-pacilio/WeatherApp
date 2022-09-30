@@ -1,2 +1,91 @@
 /* https://coolors.co/palette/242d71-808bb9-aec5eb-87755d-465f23 */
 
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap');
+
+* {
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 1em;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {    
+    background-color: #AEC5EB;
+}
+
+/* Title */
+
+h1 { 
+    font-size: 2em;
+    text-align: center;
+    padding: 40px 0;
+}
+
+/* Searching */
+
+#searching, #result {
+   display: flex;
+   flex-direction: column;
+}
+
+input, label {
+    margin: 0 auto 20px;
+}
+
+input {
+    border: 0;
+    height: 40px;
+    border-radius: 8px;
+    min-width: 300px;
+    max-width: 425px;
+    padding: 10px;
+}
+
+button {
+    border: 0;
+    color: #fff;
+    background-color: #242D71;
+    border-radius: 8px;
+    height: 40px;
+    min-width: 300px;
+    max-width: 425px;
+    margin: auto;
+}
+
+/* Results */ 
+
+#result {
+    max-width: 300px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,20%), 0 6px 20px 0 rgba(0,0,0,20%);
+    margin: 25px auto;
+    border-radius: 6px;
+    background-color: #808BB9;
+    padding: 25px;
+}
+
+h2 {
+    margin: 0 auto 25px;
+    font-size: 1.5em;
+}
+
+ul {
+    margin: auto;
+}
+
+li {
+    margin: 0 auto 25px;
+    list-style: none;
+}
+
+li:last-of-type {
+    margin-bottom: 0;
+}
+
+
+/* Error  */
+
+.error {
+    margin: 0 auto 20px;
+    color: crimson;
+}
