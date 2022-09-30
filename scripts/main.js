@@ -1,11 +1,13 @@
 const API_KEY = '';
 const LANG = 'es';
 
+const body = document.querySelector('body');
 const inputSearch = document.getElementById('citySearch');
 const buttonSearch = document.getElementById('btnSearch');
 const result = document.getElementById('result');
 
 let error = document.createElement('p');
+    error.classList = "error";
 
 buttonSearch.addEventListener('click', e => {
     e.preventDefault();
@@ -13,9 +15,12 @@ buttonSearch.addEventListener('click', e => {
     Validate(inputSearch.value);
 
     if (flag === false) {
-        error.innerHTML = 'You must introduce a city';
-        inputSearch.after(error);
-        setTimeout( () => { error.remove() }, 1500);
+        Errors();
+    }
+
+    if (flag === false && result != "") {
+        result.innerHTML="";
+        Errors();
     }
 
     if (flag === true) { 
@@ -30,6 +35,7 @@ buttonSearch.addEventListener('click', e => {
 
             result.innerHTML = 
             `
+            <h2>${data.name}</h2>
             <ul>
                 <li>Temperatura Máxima: ${Math.round(data.main.temp_max)} ºC</li>
                 <li>Temperatura Mínima: ${Math.round(data.main.temp_min)} ºC</li>
@@ -47,7 +53,7 @@ buttonSearch.addEventListener('click', e => {
     }
 })
 
-// Validations
+// Validations & Erorr generation
 
 const Validate = (string) => {
 
@@ -65,4 +71,10 @@ const Validate = (string) => {
 
         return console.log('error')
     }
-}
+};
+
+const Errors = () => {
+    error.innerHTML = 'You must introduce a city';
+    inputSearch.before(error);
+    setTimeout( () => { error.remove() }, 1500);
+};
