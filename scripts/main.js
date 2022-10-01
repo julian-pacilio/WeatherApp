@@ -17,50 +17,33 @@ buttonSearch.addEventListener('click', e => {
 
     if (flag === false) {
         Errors();
-    }
+    };
 
     if (flag === true) { 
-
-        fetch(`https://api.openweathermap.org/data/2.5/weather?q=${inputSearch.value}&appid=${API_KEY}&units=${UNITS}&lang=${LANG}`)
-
-        .then( resp => resp.json() )
-    
-        .then( data => {
-            ShowResults(data);
-        });  
-
+        storage = inputSearch.value;
+        localStorage.setItem('city', JSON.stringify(storage));
+        Search();
         result.innerHTML="";
-
-        inputSearch.value="";
-
-        console.log('Fetch Complete')
-    }
-})
+    };
+});
 
 // Functions 
 
 const Validate = (string) => {
-
+    
     const regExp = /\b([A-ZÀ-ÿ][-,a-z. ']+[ ]*)+/;
-
     if(string.match(regExp)) {
-
-        flag = true;
-
-        return console.log('success')
-
+        return flag = true;
     } else {
-
-        flag = false;
-
-        return console.log('error')
+        return flag = false;
     }
 };
 
 const Errors = () => {
+
     error.innerHTML = 'You must introduce a city';
     inputSearch.before(error);
-    setTimeout( () => { error.remove() }, 2000);
+    setTimeout( () => { error.remove() }, 2500);
 };
 
 const ShowResults = data => {
@@ -112,3 +95,26 @@ const ShowResults = data => {
         vs.textContent = `Velocidad de viento: ${Math.round(data.wind.speed * 3,6 )} km/h`;
         ul.append(vs);
 };
+
+const Search = () => {
+
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${inputSearch.value}&appid=${API_KEY}&units=${UNITS}&lang=${LANG}`)
+    
+    .then( resp => resp.json() )
+    
+    .then( data => {
+            ShowResults(data);
+    });  
+
+    inputSearch.value="";
+};
+
+const CheckStorage = () => {
+
+    if(!localStorage.getItem('city')) {
+        let storage;
+    } else {
+        Search(inputSearch.value = JSON.parse(localStorage.city));
+    }
+};
+CheckStorage();
