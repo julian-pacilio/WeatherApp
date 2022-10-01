@@ -1,4 +1,4 @@
-const API_KEY = '';
+const API_KEY = '2b875b8bda30f38de424941737bb0589';
 const LANG = 'es';
 
 const body = document.querySelector('body');
@@ -36,13 +36,21 @@ buttonSearch.addEventListener('click', e => {
             result.innerHTML = 
             `
             <h2>${data.name}</h2>
+
+            <p style="font-size: 2em; margin: 20px auto 0;">${Math.round(data.main.temp)} ºC</p>
+            <p style="font-size: 2em; margin: 20px auto 0; text-transform: capitalize;">${data.weather[0].description}</p>
+
+            <div>
+                <img class="icon" src="http://openweathermap.org/img/wn/${data.weather[0].icon}@4x.png" alt="${data.weather[0].description}}">
+            </div>
+
             <ul>
                 <li>Temperatura Máxima: ${Math.round(data.main.temp_max)} ºC</li>
                 <li>Temperatura Mínima: ${Math.round(data.main.temp_min)} ºC</li>
                 <li>Humedad: ${data.main.humidity}%</li>
                 <li>Sensación Térmica: ${Math.round(data.main.feels_like)} ºC</li>
                 <li>Presión Atmosférica: ${data.main.pressure} mbar</li>
-                <li>Velocidad de viento: ${Math.round(data.wind.speed * 3,6 )}</li>
+                <li>Velocidad de viento: ${Math.round(data.wind.speed * 3,6 )} km/h</li>
             </ul>
             `
         })
