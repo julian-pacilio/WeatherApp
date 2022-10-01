@@ -1,5 +1,6 @@
 const API_KEY = '2b875b8bda30f38de424941737bb0589';
 const LANG = 'es';
+const UNITS = 'metric';
 
 const body = document.querySelector('body');
 const inputSearch = document.getElementById('citySearch');
@@ -18,42 +19,17 @@ buttonSearch.addEventListener('click', e => {
         Errors();
     }
 
-    if (flag === false && result != "") {
-        result.innerHTML="";
-        Errors();
-    }
-
     if (flag === true) { 
 
-        result.innerHTML="";
-
-        fetch(`https://api.openweathermap.org/data/2.5/weather?q=${inputSearch.value}&appid=${API_KEY}&units=metric&lang=${LANG}`)
+        fetch(`https://api.openweathermap.org/data/2.5/weather?q=${inputSearch.value}&appid=${API_KEY}&units=${UNITS}&lang=${LANG}`)
 
         .then( resp => resp.json() )
+    
         .then( data => {
-            console.log(data);
+            ShowResults(data);
+        });  
 
-            result.innerHTML = 
-            `
-            <h2>${data.name}</h2>
-
-            <p style="font-size: 2em; margin: 20px auto 0;">${Math.round(data.main.temp)} ºC</p>
-            <p style="font-size: 2em; margin: 20px auto 0; text-transform: capitalize;">${data.weather[0].description}</p>
-
-            <div>
-                <img class="icon" src="http://openweathermap.org/img/wn/${data.weather[0].icon}@4x.png" alt="${data.weather[0].description}}">
-            </div>
-
-            <ul>
-                <li>Temperatura Máxima: ${Math.round(data.main.temp_max)} ºC</li>
-                <li>Temperatura Mínima: ${Math.round(data.main.temp_min)} ºC</li>
-                <li>Humedad: ${data.main.humidity}%</li>
-                <li>Sensación Térmica: ${Math.round(data.main.feels_like)} ºC</li>
-                <li>Presión Atmosférica: ${data.main.pressure} mbar</li>
-                <li>Velocidad de viento: ${Math.round(data.wind.speed * 3,6 )} km/h</li>
-            </ul>
-            `
-        })
+        result.innerHTML="";
 
         inputSearch.value="";
 
@@ -61,7 +37,7 @@ buttonSearch.addEventListener('click', e => {
     }
 })
 
-// Validations & Erorr generation
+// Functions 
 
 const Validate = (string) => {
 
@@ -84,5 +60,55 @@ const Validate = (string) => {
 const Errors = () => {
     error.innerHTML = 'You must introduce a city';
     inputSearch.before(error);
-    setTimeout( () => { error.remove() }, 1500);
+    setTimeout( () => { error.remove() }, 2000);
+};
+
+const ShowResults = data => {
+
+    let h2 = document.createElement('h2');
+        h2.textContent = data.name;
+        result.append(h2);
+        
+    let temp = document.createElement('span');
+        temp.classList = 'temp';
+        temp.textContent = `${Math.round(data.main.temp)} ºC`;
+        result.append(temp);
+
+    let description = document.createElement('span');
+        description.classList = 'description';
+        description.textContent = data.weather[0].description;
+        result.append(description);
+
+    let img = document.createElement('img');
+        img.classList = 'icon';
+        img.alt = data.weather[0].description;
+        img.src = `http://openweathermap.org/img/wn/${data.weather[0].icon}@4x.png`;
+        result.append(img);
+
+    let ul = document.createElement('ul');
+        result.append(ul);
+
+    let t_max = document.createElement('li');
+        t_max.textContent = `Temperatura Máxima: ${Math.round(data.main.temp_max)} ºC`;
+        ul.append(t_max);
+
+    let t_min = document.createElement('li');
+        t_min.textContent = `Temperatura Mínima: ${Math.round(data.main.temp_min)} ºC`;
+        ul.append(t_min);
+        
+    let hum = document.createElement('li');
+        hum.textContent = `Humedad: ${data.main.humidity} %`;
+        ul.append(hum);
+
+    let st = document.createElement('li');
+        st.textContent = `Sensación Térmica: ${Math.round(data.main.feels_like)} ºC`;
+        ul.append(st);
+
+    let pa = document.createElement('li');
+        pa.textContent = `Presión Atmosférica: ${data.main.pressure} mbar`;
+        ul.append(pa);
+
+    let vs = document.createElement('li');
+        vs.textContent = `Velocidad de viento: ${Math.round(data.wind.speed * 3,6 )} km/h`;
+        ul.append(vs);
 };
