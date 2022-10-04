@@ -1,0 +1,150 @@
+* {
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 1em;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {    
+    background-color: #AEC5EB;
+}
+
+/* Title */
+
+h1 { 
+    font-size: 2em;
+    text-align: center;
+    padding: 40px 0;
+}
+
+/* Searching */
+
+#searching, #result {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+input, label {
+    margin: 0 auto 20px;
+}
+
+input {
+    border: 0;
+    height: 40px;
+    border-radius: 8px;
+    min-width: 300px;
+    padding: 10px;
+}
+
+button {
+    border: 0;
+    color: #fff;
+    background-color: #242D71;
+    border-radius: 8px;
+    height: 40px;
+    min-width: 300px;
+    margin: auto;
+}
+
+/* Results */ 
+
+#result {
+    max-width: 300px;
+    margin: 3em auto;
+}
+
+h2 {
+    margin: auto;
+    font-size: 1.5em;
+}
+
+.temp {
+    font-size: 2em; 
+    margin: 20px auto 0;
+}
+
+.description {
+    font-size: 2em; 
+    margin: 20px auto 0; 
+    text-transform: capitalize;
+}
+
+ul {
+    margin: auto;
+}
+
+li {
+    margin: 0 auto 25px;
+    list-style: none;
+}
+
+li:last-of-type {
+    margin-bottom: 0;
+}
+
+#map {
+    border-radius: 15px;
+    width: 100%;
+    margin: 3em auto;
+}
+
+/* Weather Icon */
+
+@keyframes pulse {
+	0% {
+		transform: scale(0.95);
+	}
+
+	70% {
+		transform: scale(1);
+	}
+
+	100% {
+		transform: scale(0.95);
+	}
+}
+
+.icon {
+    display: block;
+    width: 200px;
+    height: 200px;
+    margin: auto;
+    transform: scale(1);
+	animation: pulse 1.5s infinite;
+}
+
+/* Error  */
+
+@keyframes shake {
+    10%, 90% {
+        transform: translate3d(-1px, 0, 0);
+    }
+    
+    20%, 80% {
+        transform: translate3d(2px, 0, 0);
+    }
+
+    30%, 50%, 70% {
+        transform: translate3d(-4px, 0, 0);
+    }
+
+    40%, 60% {
+        transform: translate3d(4px, 0, 0);
+    }
+}
+
+.error {
+    margin: 0 auto 20px;
+    color: crimson;
+    animation: shake 1s;
+}
+
+
+@media screen and (min-width: 425px) {
+    
+    input, button, #result {
+        min-width: 400px;
+    }
+}
