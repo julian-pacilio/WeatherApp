@@ -1,11 +1,19 @@
+//WEATHER API
 const API_KEY = '2b875b8bda30f38de424941737bb0589';
 const LANG = 'es';
 const UNITS = 'metric';
+
+//TOM TOM MAP API
+const API_KEY_TOM = 'AVD7wMbBHMFyutCl5hmZi71BUdNI1X4g';
+const ZOOM = '7';
+const WIDTH = '425';
+const HEIGHT = '425';
 
 const body = document.querySelector('body');
 const inputSearch = document.getElementById('citySearch');
 const buttonSearch = document.getElementById('btnSearch');
 const result = document.getElementById('result');
+const map_image = document.getElementById('map')
 
 let error = document.createElement('p');
     error.classList = "error";
@@ -19,7 +27,8 @@ buttonSearch.addEventListener('click', e => {
         Errors();
     };
 
-    if (flag === true) { 
+    if (flag === true) {
+        error.remove() 
         storage = inputSearch.value;
         localStorage.setItem('city', JSON.stringify(storage));
         Search();
@@ -43,7 +52,29 @@ const Errors = () => {
 
     error.innerHTML = 'You must introduce a city';
     inputSearch.before(error);
-    setTimeout( () => { error.remove() }, 2500);
+};
+
+const Search = () => {
+
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${inputSearch.value}&appid=${API_KEY}&units=${UNITS}&lang=${LANG}`)
+    
+    .then( resp => resp.json() )
+    
+    .then( data => {
+            lat = data.coord.lat;
+            lon = data.coord.lon;
+            MapSearch(lat,lon);
+            ShowResults(data);
+    });  
+
+    inputSearch.value="";
+};
+
+const MapSearch = () => {
+
+    fetch(`https://api.tomtom.com/map/1/staticimage?key=${API_KEY_TOM}&center=${`${lon},${lat}`}&zoom=${ZOOM}&width=${WIDTH}&height=${HEIGHT}&style=night`)
+
+    .then( resp => { map.src = resp.url });
 };
 
 const ShowResults = data => {
@@ -94,19 +125,10 @@ const ShowResults = data => {
     let vs = document.createElement('li');
         vs.textContent = `Velocidad de viento: ${Math.round(data.wind.speed * 3,6 )} km/h`;
         ul.append(vs);
-};
 
-const Search = () => {
-
-    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${inputSearch.value}&appid=${API_KEY}&units=${UNITS}&lang=${LANG}`)
-    
-    .then( resp => resp.json() )
-    
-    .then( data => {
-            ShowResults(data);
-    });  
-
-    inputSearch.value="";
+    let map = document.createElement('img')
+        map.id = 'map';
+        result.append(map)
 };
 
 const CheckStorage = () => {
