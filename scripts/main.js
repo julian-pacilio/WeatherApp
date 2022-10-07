@@ -1,11 +1,11 @@
 //WEATHER API
 const API_KEY = '2b875b8bda30f38de424941737bb0589';
-const LANG = 'es';
+const LANG = 'en';
 const UNITS = 'metric';
 
 //TOM TOM MAP API
 const API_KEY_TOM = 'AVD7wMbBHMFyutCl5hmZi71BUdNI1X4g';
-const ZOOM = '7';
+const ZOOM = '10';
 const WIDTH = '425';
 const HEIGHT = '425';
 
@@ -80,17 +80,17 @@ const MapSearch = () => {
 const ShowResults = data => {
 
     let h2 = document.createElement('h2');
-        h2.textContent = data.name;
+        h2.innerHTML = data.name;
         result.append(h2);
         
     let temp = document.createElement('span');
         temp.classList = 'temp';
-        temp.textContent = `${Math.round(data.main.temp)} ºC`;
+        temp.innerHTML = `${Math.round(data.main.temp)} ºC`;
         result.append(temp);
 
     let description = document.createElement('span');
         description.classList = 'description';
-        description.textContent = data.weather[0].description;
+        description.innerHTML = data.weather[0].description;
         result.append(description);
 
     let img = document.createElement('img');
@@ -103,27 +103,27 @@ const ShowResults = data => {
         result.append(ul);
 
     let t_max = document.createElement('li');
-        t_max.textContent = `Temperatura Máxima: ${Math.round(data.main.temp_max)} ºC`;
+        t_max.innerHTML = `<strong>Max Temperature</strong> ${Math.round(data.main.temp_max)}ºC`;
         ul.append(t_max);
 
     let t_min = document.createElement('li');
-        t_min.textContent = `Temperatura Mínima: ${Math.round(data.main.temp_min)} ºC`;
+        t_min.innerHTML = `<strong>Min Temperature</strong> ${Math.round(data.main.temp_min)}ºC`;
         ul.append(t_min);
         
     let hum = document.createElement('li');
-        hum.textContent = `Humedad: ${data.main.humidity} %`;
+        hum.innerHTML = `<strong>Humidity</strong> ${data.main.humidity}%`;
         ul.append(hum);
 
     let st = document.createElement('li');
-        st.textContent = `Sensación Térmica: ${Math.round(data.main.feels_like)} ºC`;
+        st.innerHTML = `<strong>Feels Like</strong> ${Math.round(data.main.feels_like)}ºC`;
         ul.append(st);
 
     let pa = document.createElement('li');
-        pa.textContent = `Presión Atmosférica: ${data.main.pressure} mbar`;
+        pa.innerHTML = `<strong>Atmospheric Pressure</strong> ${data.main.pressure}mbar`;
         ul.append(pa);
 
     let vs = document.createElement('li');
-        vs.textContent = `Velocidad de viento: ${Math.round(data.wind.speed * 3,6 )} km/h`;
+        vs.innerHTML = `<strong>Wind Speed</strong> ${Math.round(data.wind.speed * 3,6 )}km/h`;
         ul.append(vs);
 
     let map = document.createElement('img')
