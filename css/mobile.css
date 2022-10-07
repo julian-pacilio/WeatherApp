@@ -7,7 +7,8 @@
 }
 
 body {    
-    background-color: #AEC5EB;
+    margin: auto;
+    background-color: #808bb9;
 }
 
 /* Title */
@@ -35,7 +36,7 @@ input {
     height: 40px;
     border-radius: 8px;
     min-width: 300px;
-    padding: 10px;
+    padding: 15px;
 }
 
 button {
@@ -46,6 +47,10 @@ button {
     height: 40px;
     min-width: 300px;
     margin: auto;
+}
+
+button:hover {
+    cursor: pointer;
 }
 
 /* Results */ 
@@ -75,7 +80,71 @@ ul {
     margin: auto;
 }
 
+li:nth-child(1)::before {
+    content: "";
+    background-image: url(../imgs/hot.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    display: block;
+    height: 30px;
+    width: 30px;
+    margin: 10px auto;
+}
+
+li:nth-child(2)::before {
+    content: "";
+    background-image: url(../imgs/cold.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    display: block;
+    height: 30px;
+    width: 30px;
+    margin: 10px auto;
+}
+
+li:nth-child(3)::before  {
+    content: "";
+    background-image: url(../imgs/humidity.png);
+    background-size: contain;
+    display: block;
+    height: 30px;
+    width: 30px;
+    margin: 10px auto;
+}
+
+li:nth-child(4)::before  {
+    content: "";
+    background-image: url(../imgs/thermometer.png);
+    background-size: contain;
+    display: block;
+    height: 30px;
+    width: 30px;
+    margin: 10px auto;
+}
+
+li:nth-child(5)::before  {
+    content: "";
+    background-image: url(../imgs/gauge.png);
+    background-size: contain;
+    display: block;
+    height: 30px;
+    width: 30px;
+    margin: 10px auto;
+}
+
+li:nth-child(6)::before  {
+    content: "";
+    background-image: url(../imgs/wind.png);
+    background-size: contain;
+    display: block;
+    height: 30px;
+    width: 30px;
+    margin: 10px auto;
+}
+
+
 li {
+    text-align: center;
     margin: 0 auto 25px;
     list-style: none;
 }

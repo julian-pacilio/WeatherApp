@@ -1,0 +1,49 @@
+
+h1 { 
+    font-size: 3em;
+}
+
+input, label {
+    font-size: 1.3em;
+    margin-bottom: 40px;
+}
+
+input, button {
+    width: 600px;
+}
+
+#result {
+    max-width: 1080px;
+}
+
+h2 {
+    font-size: 2.5em;
+}
+
+.temp, .description {
+    font-size: 2.5em;
+}
+
+li {
+    font-size: 1.4em;
+    margin-bottom: 30px;
+}
+
+#map {
+    width: 600px;
+    margin-top: 4em;
+}
+
+@media screen and (min-width: 1240px) {
+    
+    #result {
+        max-width: 1220px;
+    }
+}
+
+@media screen and (min-width: 1440px) {
+    
+    #result {
+        max-width: 1440px;
+    }
+}
