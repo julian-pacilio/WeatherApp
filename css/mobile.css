@@ -8,7 +8,7 @@
 
 body {    
     margin: auto;
-    background-color: #808bb9;
+    background-color: #ffcea1;
 }
 
 /* Title */
@@ -205,6 +205,7 @@ li:last-of-type {
 }
 
 .error {
+    font-weight: bold;
     margin: 0 auto 20px;
     color: crimson;
     animation: shake 1s;
