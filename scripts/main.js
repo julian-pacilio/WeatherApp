@@ -40,7 +40,7 @@ buttonSearch.addEventListener('click', e => {
 
 const Validate = (string) => {
     
-    const regExp = /\b([A-ZÀ-ÿ][-,a-z. ']+[ ]*)+/;
+    const regExp = /^([a-zà-ÿ])|([a-zà-ÿ]+\s[a-zà-ÿ]+)$/i
     if(string.match(regExp)) {
         return flag = true;
     } else {
@@ -65,6 +65,11 @@ const Search = () => {
             lon = data.coord.lon;
             MapSearch(lat,lon);
             ShowResults(data);
+
+    }).catch( error => {
+        let h2 = document.createElement('h2');
+        h2.innerHTML = 'An error has ocurred, please try again';
+        result.append(h2);
     });  
 
     inputSearch.value="";
