@@ -2,8 +2,6 @@
 
 Simple App using Weather API
 
-Julian Pacilio DWN3AV Camino B
-
 // How to use
 
 1) Type the city or country name.
